@@ -293,6 +293,11 @@
         $('#BookReader').find(icon).attr('title', titles[icon]);
       }
     }
+
+    // Add alt tag for screen reader accessibility.
+    $('.BRnoselect').each(function(){
+      $(this).attr('alt', Drupal.t('Book Page'));
+    });
   }
 
   /**
@@ -311,7 +316,7 @@
     $("#BookReader").append(
       "<div id='BRtoolbar'>"
         +   "<span id='BRtoolbarbuttons'>"
-        +     "<form  id='booksearch'><input type='search' id='textSrch' name='textSrch' val='' placeholder='"
+        +     "<form  id='booksearch'><label class='element-invisible' for='textSrch'>" + Drupal.t('Text Search') + "</label><input type='search' id='textSrch' name='textSrch' placeholder='"
         +     Drupal.t('Search inside')
         +     "'/><button type='submit' id='btnSrch' name='btnSrch'>" + Drupal.t('GO') + "</button></form>"
         +     "<button class='BRicon play'></button>"
