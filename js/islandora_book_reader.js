@@ -307,9 +307,14 @@
       }
     }
 
+    var booktitle
+     = this.bookTitle;
     // Add alt tag for screen reader accessibility.
-    $('.BRnoselect').each(function(){
-      $(this).attr('alt', Drupal.t('Book Page'));
+    $('.BRnoselect').each(function(i) {
+      // Gives each book page a title, reminiscent of
+      // 'Sample Book: Page 1'.
+      var title = booktitle + ": " + Drupal.t("Page") + " " + (i + 1);
+      $(this).attr('alt', title);
     });
   }
 
