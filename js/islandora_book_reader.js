@@ -307,13 +307,22 @@
       }
     }
 
-    var booktitle
-     = this.bookTitle;
-    // Add alt tag for screen reader accessibility.
+    var booktitle = this.bookTitle;
+    var number_of_pages = $('.BRnoselect').length;
+    // Add alt tag for screen reader accessibility, in the format of
+    // {Obj label}: {X} of {Y} ({Page obj label}).
     $('.BRnoselect').each(function(i) {
       // Gives each book page a title, reminiscent of
       // 'Sample Book: Page 1'.
-      var title = booktitle + ": " + Drupal.t("Page") + " " + (i + 1);
+      var title = Drupal.t(
+          '@label: @x of @y (@pagetitle)',
+          {
+            '@label': booktitle,
+            '@x': i + 1,
+            '@y': number_of_pages,
+            '@pagetitle': "super page title"
+          });
+      // var title = booktitle + ": " + number_of_pages + " " + (i + 1);
       $(this).attr('alt', title);
     });
   }
