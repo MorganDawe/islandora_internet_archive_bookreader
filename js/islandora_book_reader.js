@@ -307,13 +307,24 @@
       }
     }
 
-    var booktitle
-     = this.bookTitle;
+    // Create local vars here, since we can use the 'this' reference in the
+    // each look below.
+    var booktitle = this.settings.label;
+    var number_of_pages = this.settings.pageCount;
+    var pages = this.settings.pages;
     // Add alt tag for screen reader accessibility.
     $('.BRnoselect').each(function(i) {
       // Gives each book page a title, reminiscent of
-      // 'Sample Book: Page 1'.
-      var title = booktitle + ": " + Drupal.t("Page") + " " + (i + 1);
+      // '{Obj label}: {X} of {Y} ({Page obj label})'.
+      var title = Drupal.t(
+        '@label: @x of @y (@pagetitle)',
+        {
+          '@label': booktitle,
+          '@x': i + 1,
+          '@y': number_of_pages,
+          '@pagetitle': pages[i]['label']
+        }
+      );
       $(this).attr('alt', title);
     });
   }
